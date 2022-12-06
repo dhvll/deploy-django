@@ -8,14 +8,14 @@ on:
 jobs:
   test_my_django_project:
     runs-on: ubuntu-latest
-    # env:
-    #   DJANGO_SECRET_KEY: 'This-is-it!'
+    env:
+      DJANGO_SECRET_KEY: '${{ secrets.DJANGO_SECRET_KEY }}'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run hello world
         run: |
-          echo "DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}"
+          echo "DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}"
       - name: Setup Python 3.10
         uses: actions/setup-python@v2
         with:
