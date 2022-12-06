@@ -7,10 +7,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   # Triggered based on the git event type
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,11 +39,11 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s 
+        options: --health-cmd="mysqladmin ping" --health-interval=10s
     # If you want to test multiple python version(s)
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ['3.8', '3.9', '3.10']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -59,8 +59,8 @@ jobs:
       - name: Run Tests
         # Step specific environment variables
         env:
-          DEBUG: "0"
-          MYSQL_USER: "root" # must use the root user on MySQL to run tests
+          DEBUG: '0'
+          MYSQL_USER: 'root' # must use the root user on MySQL to run tests
           DATABASE_BACKEND: ${{ env.DATABASE_BACKEND }}
           DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
         run: |
