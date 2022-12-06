@@ -8,21 +8,22 @@ on:
 jobs:
   test_my_django_project:
     runs-on: ubuntu-latest
-    env:
-      DJANGO_SECRET_KEY: 'This-is-it!'
+    # env:
+    #   DJANGO_SECRET_KEY: 'This-is-it!'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run hello world
         run: |
-          echo "DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}"
+          echo "DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}"
       - name: Setup Python 3.10
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
       - name: Install requirements
         run: |
-          python3.10 -m pip install -r requirements.txt
+          python -m pip install pip --upgrade
+          python -m pip install -r requirements.txt
       - name: Run tests
         run: |
-          python3.10 manage.py test
+          python manage.py test
