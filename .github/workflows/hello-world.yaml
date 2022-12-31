@@ -1,6 +1,7 @@
 name: Test workflows
 
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
@@ -9,7 +10,7 @@ jobs:
   test_my_django_project:
     runs-on: ubuntu-latest
     env:
-      DJANGO_SECRET_KEY: '${{ secrets.DJANGO_SECRET_KEY }}'
+      DJANGO_SECRET_KEY: 'abc123'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
