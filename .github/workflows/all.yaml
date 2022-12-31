@@ -8,3 +8,6 @@ on:
 jobs:
   test_django:
     uses: ./.github/workflows/hello-world.yaml
+  test_django_again:
+    needs: test_django
+    uses: ./.github/workflows/hello-world.yaml
